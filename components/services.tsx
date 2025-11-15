@@ -92,14 +92,14 @@ export default function Services() {
     </div>
 
     {/* COLUMN 3–4: BIG WHITE BOX */}
-    <div className="lg:col-span-2 bg-white rounded-3xl p-10 shadow-sm relative">
+    <div className="lg:col-span-2 bg-white rounded-3xl p-10 shadow-sm relative pb-0">
       <div className="flex flex-col lg:flex-row items-center gap-12">
 
         {/* TEXT CONTENT */}
         <div className="flex-1">
           <div className="rounded-full ">
                 <img
-                  src="/logo/logo2.png"
+                  src="/logo/logo.png"
                   className="  w-20 h-20 object-contain "
                   alt="Tooth Icon"
                 />

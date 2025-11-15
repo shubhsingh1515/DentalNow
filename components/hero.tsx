@@ -1,42 +1,45 @@
 // Updated Hero component matching the UI exactly like the provided image
 // (Single-section layout, header included inside same component)
-
+"use client";
 import { ArrowRight, Play, Menu, Search, User, Phone } from "lucide-react";
-import Image from "next/image";
-
-const ToothIcon = ({ className = "" }) => (
-  <svg
-    className={className}
-    viewBox="0 0 40 40"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M20 5C15 5 12 8 10 12C8 16 8 20 8 24C8 28 10 32 12 34C14 36 16 35 18 33C19 32 19 30 20 30C21 30 21 32 22 33C24 35 26 36 28 34C30 32 32 28 32 24C32 20 32 16 30 12C28 8 25 5 20 5Z"
-      fill="currentColor"
-      stroke="currentColor"
-      strokeWidth="1.5"
-    />
-    <circle cx="20" cy="15" r="1.5" fill="white" />
-  </svg>
-);
+import { useState, useEffect } from "react";
 
 export default function Hero() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const slides = [
+    "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&h=800&fit=crop",
+    "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&h=800&fit=crop",
+    "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&h=800&fit=crop"
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 3000); // Change image every 3 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="min-h-screen bg-white font-sans">
-      {/* NAVIGATION */}
-      <nav className=" top-0 left-0 right-0 bg-white   rounded-b-3xl">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
+      <nav className=" top-0 left-0 right-0 bg-white   rounded-b-3xl m-3">
+        <div className="max-w-7xl mx-auto p-2 lg:p-0 flex items-center justify-between md:border-0 border-2 border-gray-200 rounded-2xl mx-4 md:mx-auto">
+          {/* Mobile Hamburger - Left Side */}
+          <button className="md:hidden">
+            <Menu size={24} />
+          </button>
+
+          {/* Desktop Logo & Links - Left Side */}
+          <div className="hidden md:flex items-center gap-2">
             <div className="rounded-full flex items-center justify-center">
               <img
-                src="/logo/logo2.png"
-                className=" absolute w-25 h-25 object-contain ml-[3rem] "
-                alt="Tooth Icon"
+                src="/logo/logo.png"
+                className="w-15 h-15 object-contain ml-[3rem]"
+                alt="Logo"
               />
             </div>
 
-            <div className="hidden md:flex items-center gap-6 mx-5 ml-[4rem]">
+            <div className="flex items-center gap-6 mx-5 ml-[4rem]">
               <button className="px-5 py-2 bg-[#019c70] text-white rounded-full text-sm font-medium shadow-sm hover:bg-[#017a59] transition-all">
                 Why Choose Us
               </button>
@@ -61,9 +64,17 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Desktop Navigation */}
+          {/* Mobile Logo - Right Side */}
+          <div className="md:hidden">
+            <img
+              src="/logo/logo.png"
+              className="w-12 h-12 object-contain"
+              alt="Logo"
+            />
+          </div>
 
-          <div className="hidden md:flex items-center gap-3 z-50 bg-white p-2 rounded-full shadow-md mr-[1rem]">
+          {/* Desktop Navigation - Right Side */}
+          <div className="hidden md:flex items-center gap-3 z-50 bg-white p-2 rounded-full  mr-[-1rem] pr-[2rem]">
             <button className="w-10 h-10 bg-[#019c70] rounded-full flex items-center justify-center text-white hover:bg-[#017a59]">
               <Search size={20} />
             </button>
@@ -74,11 +85,6 @@ export default function Hero() {
               Contact Us <Phone size={18} />
             </button>
           </div>
-
-          {/* Mobile*/}
-          <button className="md:hidden">
-            <Menu size={24} />
-          </button>
         </div>
       </nav>
 
@@ -87,17 +93,25 @@ export default function Hero() {
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
           {/* LEFT SIDE */}
           <div className="space-y-8 ">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold leading-tight text-[#142c24] pt-10">
-              World class <br />
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-semibold leading-tight text-[#142c24] pt-5">
+              {/* Word + Logo */}
+              <div className="flex items-center gap-3">
+                <span>World class</span>
+                <img
+                  src="/logo/logo.png"
+                  className="w-20 h-20 object-contain pt-4"
+                  alt="Logo"
+                />
+              </div>
               technology <br />
               <span className="text-[#019c70]">neighbourhood</span>
               <br />
               {/* dentist + paragraph side by side */}
-              <div className="flex items-start gap-4 mt-2">
+              <div className="flex items-start gap-2 lg:gap-4 mt-2">
                 <span className="text-[#019c70]">dentist</span>
 
-                <p className="text-gray-600 text-xs max-w-xs leading-relaxed pt-2 px-2">
-                  <span className="font-semibold text-[#142c24] block text-sm mb-1">
+                <p className="text-gray-600 text-[8px] lg:text-xs max-w-xs leading-relaxed pt-2 px-2">
+                  <span className="font-semibold text-[#142c24] block text-[8px] lg:text-xs lg:mb-1">
                     Your smile is our calling
                   </span>
                   Connect with trusted doctors, book appointments, and manage
@@ -108,12 +122,14 @@ export default function Hero() {
             </h1>
 
             <div className="flex gap-4 items-center flex-wrap">
-              <button className="bg-[#019c70] text-white px-8 py-4 rounded-full font-semibold flex items-center gap-2 hover:shadow-lg hover:scale-105 transition-all">
+              <button className="bg-[#019c70] text-white px-6 py-3 rounded-full font-semibold flex items-center gap-2 hover:shadow-lg hover:scale-105 transition-all">
                 Book an Appointment <ArrowRight size={20} />
               </button>
-              <button className="text-[#019c70] font-semibold flex items-center gap-2 hover:gap-3 transition-all">
+              <div className="hidden lg:flex">
+              <button className=" text-[#019c70] font-semibold flex items-center gap-2 hover:gap-3 transition-all">
                 Learn More <ArrowRight size={20} />
               </button>
+              </div>
             </div>
 
             {/* statistics */}
@@ -134,11 +150,18 @@ export default function Hero() {
           {/* RIGHT SIDE */}
           <div className="relative mt-[-7rem]">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-              <img
-                src="/images/hero.jpg"
-                className="w-full h-full object-cover aspect-square"
-                alt="Dentist"
-              />
+              <div className="relative w-full h-full aspect-square">
+                {slides.map((slide, index) => (
+                  <img
+                    key={index}
+                    src={slide}
+                    className={`w-full h-full object-cover aspect-square absolute inset-0 transition-opacity duration-1000 ${
+                      index === currentSlide ? "opacity-100" : "opacity-0"
+                    }`}
+                    alt={`Dentist ${index + 1}`}
+                  />
+                ))}
+              </div>
 
               <div className="hidden lg:flex absolute top-6 left-6 flex-wrap gap-3 max-w-[250px]">
                 {["Quality", "Experience", "Family", "Technology"].map(
@@ -165,20 +188,21 @@ export default function Hero() {
                 )}
               </div>
 
-            {/* number badges */}
-<div className="absolute left-6 top-3/4 space-y-1">
-  {["01", "02", "03"].map((n) => (
-    <div
-      key={n}
-      className="bg-black/30 backdrop-blur-md text-white w-6 h-10 rounded-full flex items-center justify-center  shadow-md border border-white/20"
-    >
-      {n}
-    </div>
-  ))}
-</div>
-
-
-              {/* tooth + play */}
+              {/* number badges */}
+              <div className="absolute left-6 top-3/4 space-y-1">
+                {["01", "02", "03"].map((n, index) => (
+                  <div
+                    key={n}
+                    className={`backdrop-blur-md text-white w-6 h-10 rounded-full flex items-center justify-center shadow-md border transition-all duration-300 ${
+                      index === currentSlide 
+                        ? "bg-[#019c70] border-white/40 scale-110" 
+                        : "bg-black/30 border-white/20"
+                    }`}
+                  >
+                    {n}
+                  </div>
+                ))}
+              </div>
             </div>
 
             {/* extra image small */}
@@ -187,8 +211,8 @@ export default function Hero() {
               <div className="rounded-full ">
                 <img
                   src="/logo/logo1.png"
-                  className=" absolute w-10 h-10 object-contain m-2"
-                  alt="Tooth Icon"
+                  className="absolute w-10 h-10 object-contain m-2"
+                  alt="Logo"
                 />
               </div>
 
@@ -209,8 +233,9 @@ export default function Hero() {
 
               {/* Image */}
               <img
-                src="/images/hero.jpg"
+                src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=400&h=300&fit=crop"
                 className="w-full h-full object-cover"
+                alt="Video thumbnail"
               />
             </div>
           </div>

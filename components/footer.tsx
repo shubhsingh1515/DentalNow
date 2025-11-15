@@ -45,17 +45,17 @@ export default function Footer() {
 
 
         {/* MASSIVE DENTALNOW TEXT */}
-        <div className="relative mt-5 mb-20">
+        <div className="relative mt-5 mb-5 lg:mb-20">
           <h1 className="text-[18vw] md:text-[14vw] font-extrabold leading-none text-[#019c70] tracking-tight">
             DentalNow
           </h1>
 
           {/* Floating Arrow Button */}
-          <button
+          {/* <button
             className="absolute right-4 md:right-10 top-1/2 -translate-y-1/2 bg-black text-white w-12 h-12 rounded-full flex items-center justify-center shadow hover:bg-[#019c70] transition"
           >
             <ArrowUp size={28} />
-          </button>
+          </button> */}
         </div>
 
 
