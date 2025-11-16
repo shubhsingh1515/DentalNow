@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight, Send, ArrowRight } from "lucide-react";
 
 const professionals = [
@@ -75,15 +75,16 @@ export default function Team() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
-  // Check screen size
-  useState(() => {
+  useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    checkMobile();
+
+    checkMobile(); // Run initially
     window.addEventListener("resize", checkMobile);
+
     return () => window.removeEventListener("resize", checkMobile);
-  });
+  }, []);
 
   const cardsPerView = isMobile ? 1 : 4;
 
