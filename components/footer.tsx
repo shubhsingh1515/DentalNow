@@ -45,8 +45,8 @@ export default function Footer() {
 
 
         {/* MASSIVE DENTALNOW TEXT */}
-        <div className="relative mt-5 mb-5 lg:mb-20">
-          <h1 className="text-[18vw] md:text-[14vw] font-extrabold leading-none text-[#019c70] tracking-tight">
+        <div className="relative mt-5 mb-2 ">
+          <h1 className="text-[18vw] md:text-[16vw] 2xl:text-[12vw] font-extrabold leading-none text-[#019c70] tracking-tight">
             DentalNow
           </h1>
 

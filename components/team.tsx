@@ -13,21 +13,21 @@ const professionals = [
   },
   {
     name: "Nisha Bhatia",
-    image: "/images/doctor.png",
+    image: "/images/doctor3.png",
     specialty: "Orthodontics",
     description:
       "With 10+ years of orthodontics experience, Nisha's gentle approach helps patients achieve their perfect smile.",
   },
   {
     name: "Aarav Mehta",
-    image: "/images/doctor.png",
+    image: "/images/doctor4.png",
     specialty: "Endodontics",
     description:
       "With 9+ years of endodontics experience, Aarav's precise approach ensures painless root canal treatments.",
   },
   {
     name: "Priya Chhabra",
-    image: "/images/doctor.png",
+    image: "/images/doctor5.png",
     specialty: "Periodontics",
     description:
       "With 12+ years of periodontics experience, Priya's caring approach helps maintain healthy gums and teeth.",
@@ -41,25 +41,26 @@ const professionals = [
   },
   {
     name: "Aditya Verma",
-    image: "/images/doctor.png",
+    image: "/images/doctor3.png",
     specialty: "Prosthodontics",
     description:
       "With 11+ years of prosthodontics experience, Aditya's expert approach restores beautiful, functional smiles.",
   },
   {
     name: "Kavya Singh",
-    image: "/images/doctor.png",
+    image: "/images/doctor5.png",
     specialty: "Oral Surgery",
     description:
       "With 15+ years of oral surgery experience, Kavya's skilled approach ensures safe and comfortable surgical procedures.",
   },
   {
     name: "Arjun Patel",
-    image: "/images/doctor.png",
+    image: "/images/doctor4.png",
     specialty: "Implantology",
     description:
       "With 13+ years of implantology experience, Arjun's innovative approach provides lasting dental implant solutions.",
   },
+
 ];
 
 const faqs = [
@@ -108,7 +109,7 @@ export default function Team() {
 
   return (
     <section id="team" className="py-12 md:py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-4 overflow-hidden">
         {/* Section Title */}
         <div className="text-center mb-8 md:mb-10">
           <p className="text-gray-600 mb-2 text-sm md:text-base">
@@ -204,7 +205,7 @@ export default function Team() {
                         <p className="text-white font-bold text-xs mb-1">
                           {professionals[currentIndex].specialty}
                         </p>
-                        <p className="text-white text-[10px] leading-snug">
+                        <p className=" text-[10px] leading-snug">
                           {professionals[currentIndex].description}
                         </p>
                       </div>
@@ -278,7 +279,7 @@ export default function Team() {
                 {professionals.map((prof, i) => (
                   <div
                     key={prof.name}
-                    className="flex-shrink-0 relative rounded-3xl overflow-hidden bg-white group transition-all duration-500 hover:scale-120 hover:shadow-2xl hover:z-20"
+                    className="flex-shrink-0 relative rounded-3xl overflow-hidden bg-white group transition-all duration-500 hover:scale-118 hover:shadow-2xl hover:z-20 origin-bottom"
                     style={{
                       width: `calc(${100 / cardsPerView}% - ${
                         (6 * (cardsPerView - 1)) / cardsPerView

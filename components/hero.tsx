@@ -12,6 +12,17 @@ export default function Hero() {
     "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&h=800&fit=crop"
   ];
 
+  const [isScrolled, setIsScrolled] = useState(false);
+
+useEffect(() => {
+  const handleScroll = () => {
+    setIsScrolled(window.scrollY > 40);
+  };
+
+  window.addEventListener("scroll", handleScroll);
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -21,75 +32,96 @@ export default function Hero() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white font-sans">
-      <nav className=" top-0 left-0 right-0 bg-white   rounded-b-3xl m-3">
-        <div className="max-w-7xl mx-auto p-2 lg:p-0 flex items-center justify-between md:border-0 border-2 border-gray-200 rounded-2xl mx-4 md:mx-auto">
-          {/* Mobile Hamburger - Left Side */}
-          <button className="md:hidden">
-            <Menu size={24} />
-          </button>
+    <div className="min-h-screen bg-white font-sans 2xl:mt-20 2xl:bg-[#f7f7f7]">
+      {/* ORIGINAL NAV — SHOW ONLY WHEN NOT SCROLLED (Desktop + Mobile) */}
+{!isScrolled && (
+  <nav className="top-0 left-0 right-0 bg-white 2xl:bg-[#f7f7f7] rounded-b-3xl m-3 md:block">
+    <div className="max-w-7xl mx-auto p-2 lg:p-0 flex items-center justify-between md:border-0 border-2 border-gray-200 rounded-2xl mx-4 md:mx-auto">
 
-          {/* Desktop Logo & Links - Left Side */}
-          <div className="hidden md:flex items-center gap-2">
-            <div className="rounded-full flex items-center justify-center">
-              <img
-                src="/logo/logo.png"
-                className="w-15 h-15 object-contain ml-[3rem]"
-                alt="Logo"
-              />
-            </div>
+      {/* Mobile Hamburger */}
+      <button className="md:hidden">
+        <Menu size={24} />
+      </button>
 
-            <div className="flex items-center gap-6 mx-5 ml-[4rem]">
-              <button className="px-5 py-2 bg-[#019c70] text-white rounded-full text-sm font-medium shadow-sm hover:bg-[#017a59] transition-all">
-                Why Choose Us
-              </button>
-              <a
-                href="#"
-                className="text-[#142c24] hover:text-[#019c70] text-sm font-medium"
-              >
-                Services
-              </a>
-              <a
-                href="#"
-                className="text-[#142c24] hover:text-[#019c70] text-sm font-medium"
-              >
-                Team
-              </a>
-              <a
-                href="#"
-                className="text-[#142c24] hover:text-[#019c70] text-sm font-medium"
-              >
-                FAQ
-              </a>
-            </div>
-          </div>
-
-          {/* Mobile Logo - Right Side */}
-          <div className="md:hidden">
-            <img
-              src="/logo/logo.png"
-              className="w-12 h-12 object-contain"
-              alt="Logo"
-            />
-          </div>
-
-          {/* Desktop Navigation - Right Side */}
-          <div className="hidden md:flex items-center gap-3 z-50 bg-white p-2 rounded-full  mr-[-1rem] pr-[2rem]">
-            <button className="w-10 h-10 bg-[#019c70] rounded-full flex items-center justify-center text-white hover:bg-[#017a59]">
-              <Search size={20} />
-            </button>
-            <button className="w-10 h-10 bg-[#019c70] rounded-full flex items-center justify-center text-white hover:bg-[#017a59]">
-              <User size={20} />
-            </button>
-            <button className="px-6 py-2 bg-[#019c70] text-white rounded-full flex items-center gap-2 font-medium hover:bg-[#017a59]">
-              Contact Us <Phone size={18} />
-            </button>
-          </div>
+      {/* Desktop Logo & Links */}
+      <div className="hidden md:flex items-center gap-2">
+        <div className="rounded-full flex items-center justify-center">
+          <img src="/logo/logo.png" className="w-15 h-15 object-contain" />
         </div>
-      </nav>
+
+        <div className="flex items-center gap-6 mx-5 ml-[4rem]">
+          <button className="px-5 py-2 bg-[#019c70] text-white rounded-full text-sm font-medium shadow-sm hover:bg-[#017a59] transition-all">
+            Why Choose Us
+          </button>
+          <a className="text-[#142c24] hover:text-[#019c70] text-sm font-medium">
+            Services
+          </a>
+          <a className="text-[#142c24] hover:text-[#019c70] text-sm font-medium">
+            Team
+          </a>
+          <a className="text-[#142c24] hover:text-[#019c70] text-sm font-medium">
+            FAQ
+          </a>
+        </div>
+      </div>
+
+      {/* Mobile Logo */}
+      <div className="md:hidden">
+        <img src="/logo/logo.png" className="w-12 h-12 object-contain" />
+      </div>
+
+      {/* Desktop Right Section */}
+      <div className="hidden md:flex items-center gap-3 z-50 bg-white 2xl:bg-[#f7f7f7] p-2 rounded-b-3xl mr-[-1rem] pr-[2rem]">
+        <button className="w-10 h-10 bg-[#019c70] rounded-full flex items-center justify-center text-white hover:bg-[#017a59]">
+          <Search size={20} />
+        </button>
+        <button className="w-10 h-10 bg-[#019c70] rounded-full flex items-center justify-center text-white hover:bg-[#017a59]">
+          <User size={20} />
+        </button>
+        <button className="px-6 py-2 bg-[#019c70] text-white rounded-full flex items-center gap-2 font-medium hover:bg-[#017a59]">
+          Contact Us <Phone size={18} />
+        </button>
+      </div>
+    </div>
+  </nav>
+)}
+
+{/* TRANSPARENT FLOATING NAV — ONLY WHEN SCROLLED (Desktop only) */}
+{isScrolled && (
+  <nav className="hidden md:block fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-7xl">
+    <div className="bg-white/20 backdrop-blur-xl  rounded-full px-6  flex items-center justify-between">
+
+      {/* Left */}
+      <div className="flex items-center gap-2">
+        <img src="/logo/logo.png" className="w-12 h-12 object-contain" />
+        <div className="flex items-center gap-6 ml-6">
+          <button className="px-5 py-2 bg-[#019c70] text-white rounded-full text-sm font-medium shadow-sm hover:bg-[#017a59] transition-all">
+            Why Choose Us
+          </button>
+          <a className=" font-medium">Services</a>
+          <a className=" font-medium">Team</a>
+          <a className=" font-medium">FAQ</a>
+        </div>
+      </div>
+
+      {/* Right */}
+      <div className="flex items-center gap-3 p-2 rounded-full">
+        <button className="w-10 h-10 bg-[#019c70] rounded-full flex items-center justify-center text-white">
+          <Search size={20} />
+        </button>
+        <button className="w-10 h-10 bg-[#019c70] rounded-full flex items-center justify-center text-white">
+          <User size={20} />
+        </button>
+        <button className="px-6 py-2 bg-[#019c70] text-white rounded-full flex items-center gap-2 font-medium">
+          Contact Us <Phone size={18} />
+        </button>
+      </div>
+    </div>
+  </nav>
+)}
 
       {/* HERO SECTION */}
-      <section className=" pb-20 px-4 ">
+      <section className=" pb-5 px-4 ">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
           {/* LEFT SIDE */}
           <div className="space-y-8 ">
@@ -133,7 +165,7 @@ export default function Hero() {
             </div>
 
             {/* statistics */}
-            <div className="flex gap-12 pt-4">
+            <div className="hidden lg:flex gap-12 pt-4">
               <div>
                 <p className="text-4xl font-bold text-[#142c24]">98%</p>
                 <p className="text-gray-600 text-base">satisfied patients</p>
@@ -148,7 +180,7 @@ export default function Hero() {
           </div>
 
           {/* RIGHT SIDE */}
-          <div className="relative mt-[-7rem]">
+          <div className="relative mt-[-4rem] lg:mt[-7rem] 2xl:mt-[-4rem]">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl">
               <div className="relative w-full h-full aspect-square">
                 {slides.map((slide, index) => (
@@ -162,34 +194,43 @@ export default function Hero() {
                   />
                 ))}
               </div>
+<div
+  className="
+    absolute 
+    flex flex-wrap gap-3
+    bottom-4 -right-4         
+    lg:bottom-auto lg:right-auto 
+    lg:top-6 lg:left-6         
+    w-[70%] sm:w-[60%] md:w-[50%] lg:w-[40% ]
+  "
+>
+  {["Quality", "Experience", "Family", "Technology"].map((tag, i) => (
+    <div
+      key={i}
+      className="
+        flex items-center gap-2 
+        px-4 py-2 
+        rounded-full 
+        text-xs sm:text-sm font-medium 
+        shadow-md 
+        backdrop-blur-sm 
+        bg-black/20 
+        text-white 
+        border border-white/30
+      "
+    >
+      <svg width="8" height="8" viewBox="0 0 8 8" fill="white">
+        <circle cx="4" cy="4" r="4" />
+      </svg>
 
-              <div className="hidden lg:flex absolute top-6 left-6 flex-wrap gap-3 max-w-[250px]">
-                {["Quality", "Experience", "Family", "Technology"].map(
-                  (tag, i) => (
-                    <div
-                      key={i}
-                      className="flex items-center gap-4 px-4 py-2 rounded-full text-sm font-medium shadow-md backdrop-blur-sm bg-black/20 text-white border border-white/30"
-                    >
-                      {/* White dot */}
-                      <svg
-                        width="8"
-                        height="8"
-                        viewBox="0 0 8 8"
-                        fill="white"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <circle cx="4" cy="4" r="4" />
-                      </svg>
+      {tag}
+    </div>
+  ))}
+</div>
 
-                      {/* Tag text */}
-                      {tag}
-                    </div>
-                  )
-                )}
-              </div>
 
               {/* number badges */}
-              <div className="absolute left-6 top-3/4 space-y-1">
+              <div className="absolute left-6 top-3/5 lg:top-3/4 ">
                 {["01", "02", "03"].map((n, index) => (
                   <div
                     key={n}
