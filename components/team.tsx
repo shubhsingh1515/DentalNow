@@ -188,9 +188,14 @@ export default function Team() {
                     />
 
                     {/* Top Left Tooth Icon */}
-                    <div className="absolute top-1 -left-1 opacity-30">
+                    <div className="absolute top-1 -left-1 ">
                       <div className="rounded-full">
-                        <div className="w-16 h-16 bg-white/20 rounded-full"></div>
+                        <div className="rounded-full flex items-center justify-center">
+                <img
+                  src="/logo/logo1.png"
+                  className="w-15 h-15 object-contain"
+                />
+              </div>
                       </div>
                     </div>
 
@@ -295,10 +300,16 @@ export default function Team() {
                       />
 
                       {/* Top Left Tooth Icon */}
-                      <div className="absolute top-1 -left-1 opacity-30">
-                        <div className="rounded-full">
+                      <div className="absolute top-1 -left-1 ">
+                        {/* <div className="rounded-full">
                           <div className="w-18 h-18 bg-white/20 rounded-full"></div>
-                        </div>
+                        </div> */}
+                        <div className="rounded-full flex items-center justify-center">
+                <img
+                  src="/logo/logo1.png"
+                  className="w-15 h-15 object-contain"
+                />
+              </div>
                       </div>
 
                       {/* Top Right White Arrow */}
@@ -352,7 +363,7 @@ export default function Team() {
         </div>
 
         {/* FAQ Section */}
-        <div>
+        <div id="faq">
           <div className="flex items-center justify-center text-white mx-auto">
             <div className="rounded-full">
               <div className="w-16 h-16 md:w-20 md:h-20  rounded-full m-2">

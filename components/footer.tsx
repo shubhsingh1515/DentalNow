@@ -27,11 +27,11 @@ export default function Footer() {
           <div>
             <h3 className="font-bold text-[#142c24] mb-4 text-sm tracking-wide">NAVIGATION</h3>
             <ul className="space-y-2 text-gray-700 text-sm">
-              <li><a href="#" className="hover:text-[#019c70]">Why Choose Us</a></li>
+              <li><a href="#why-choose-us" className="hover:text-[#019c70]">Why Choose Us</a></li>
               <li><a href="#services" className="hover:text-[#019c70]">Services</a></li>
               <li><a href="#team" className="hover:text-[#019c70]">Team</a></li>
               <li><a href="#faq" className="hover:text-[#019c70]">FAQ</a></li>
-              <li><a href="#contact" className="hover:text-[#019c70]">Contact</a></li>
+              <li><a href="#contact-us" className="hover:text-[#019c70]">Contact</a></li>
             </ul>
           </div>
 

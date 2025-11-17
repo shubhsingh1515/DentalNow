@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-20 bg-[#142c24] text-white">
+    <section id="contact-us" className="py-20 bg-[#142c24] text-white">
       <div className="max-w-7xl mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Left - Image */}
